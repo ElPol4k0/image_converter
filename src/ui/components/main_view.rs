@@ -10,9 +10,10 @@ pub fn view(app: &MyApp) -> Element<'_, Message> {
         settings_section::view(&app.output_format, app.quality),
         footer::view(&app.conversion_status),
     ]
-    .spacing(0);
+    .spacing(20);
 
     container(content)
+        .padding(30)
         .width(Length::Fill)
         .height(Length::Fill)
         .into()

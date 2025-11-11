@@ -1,3 +1,4 @@
+pub mod card;
 pub mod file_picker;
 pub mod footer;
 pub mod header;

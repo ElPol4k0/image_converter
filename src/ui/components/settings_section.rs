@@ -1,18 +1,33 @@
 use crate::app::message::Message;
-use iced::widget::{column, container, pick_list, row, slider, text};
-use iced::{Element, Length};
+use crate::ui::components::card;
+use iced::font::Weight;
+use iced::widget::{column, pick_list, row, slider, text};
+use iced::{color, Alignment, Element, Font, Length};
 
 pub fn view(output_format: &str, quality: u8) -> Element<'_, Message> {
-    container(
+    card::card(
         column![
-            text("Settings").size(20),
+            text("Settings")
+                .width(Length::Fill)
+                .align_x(Alignment::Center)
+                .size(20)
+                .font(Font {
+                    weight: Weight::ExtraBold,
+                    ..Font::default()
+                })
+                .color(color!(0xffffff)),
             row![
                 text("Format:"),
                 pick_list(
-                    vec!["PNG", "JPEG", "WEBP", "GIF"],
-                    Some(output_format),
-                    |format| Message::FormatChanged(format.to_string())
-                ),
+                    vec![
+                        "PNG".to_string(),
+                        "JPEG".to_string(),
+                        "WEBP".to_string(),
+                        "GIF".to_string()
+                    ],
+                    Some(output_format.to_string()),
+                    |format| Message::FormatChanged(format)
+                )
             ]
             .spacing(10),
             row![
